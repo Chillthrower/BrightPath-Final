@@ -189,12 +189,25 @@ export default function Dashboard() {
     setAllGameTotalAverageScore(calculatedAverage * 100);
   }, []);
 
-  const understandingData = [
+  const [understandingData, setUnderstandingData] = useState([
     { month: 'Jan', value: 30 },
     { month: 'Feb', value: 45 },
     { month: 'Mar', value: 60 },
-    { month: 'Apr', value: 80 },
-  ];
+    { month: 'Apr', value: 10 },
+  ]);
+
+  useEffect(() => {
+    const getRandomNumber = () => {
+      return Math.floor(Math.random() * (80 - 30 + 1)) + 30;
+    };
+
+    // Update random values for understandingData every time the page loads
+    const updatedUnderstandingData = understandingData.map(data => ({
+      ...data,
+      value: getRandomNumber(),
+    }));
+    setUnderstandingData(updatedUnderstandingData);
+  }, []);
   
   const daysStreak = [
     { name: 'Games', value: 40, color: '#FF4B91' },
@@ -232,11 +245,24 @@ export default function Dashboard() {
     { type: 'sad' as const, count: 1, percentage: 5 },
   ];
   
-  const communicationSkills = [
+  const [communicationSkills, setCommunicationSkills] = useState([
     { name: 'Verbal Skills', value: 85, icon: Mic },
     { name: 'Written Skills', value: 78, icon: PenTool },
     { name: 'Comprehension', value: 90, icon: BookOpen },
-  ];
+  ]);
+
+  useEffect(() => {
+    const getRandomNumber = () => {
+      return Math.floor(Math.random() * (85 - 50 + 1)) + 50;
+    };
+
+    // Update random values every time the page loads
+    const updatedCommunicationSkills = communicationSkills.map(skill => ({
+      ...skill,
+      value: getRandomNumber(),
+    }));
+    setCommunicationSkills(updatedCommunicationSkills);
+  }, []);
   
 
 
